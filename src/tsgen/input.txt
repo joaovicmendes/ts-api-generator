@@ -1,0 +1,16 @@
+model [
+    Student {
+        name: string
+        email: string
+        ra: number
+    }
+]
+endpoints [
+    Student {
+        GET '/students'
+        GET '/students/:id'
+        POST '/students/:id'
+        PUT '/students/:id'
+        DELETE '/students/:id'
+    }
+]

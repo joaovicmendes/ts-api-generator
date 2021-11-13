@@ -32,14 +32,14 @@ Aqui uma descrição da linguagem de declaração da api, a `tsgen`:
 
 E aqui vai um exemplo simples:
 ```
-model {
+model [
     Student {
         name: string
         email: string
         ra: number
     }
-}
-endpoints {
+]
+endpoints [
     Student {
         GET '/students'
         GET '/students/:id'
@@ -47,7 +47,7 @@ endpoints {
         PUT '/students/:id'
         DELETE '/students/:id'
     }
-}
+]
 ```
 
 ## Como contribuir
