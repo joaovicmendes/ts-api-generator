@@ -2,15 +2,12 @@ package br.ufscar.dc.compiladores.tsgen;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import br.ufscar.dc.compiladores.parser.tsgenParser;
 import br.ufscar.dc.compiladores.parser.tsgenLexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 public class Main {
