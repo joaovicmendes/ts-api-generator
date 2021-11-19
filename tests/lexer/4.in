@@ -1,0 +1,25 @@
+// Deve ignorar o comentário
+model [
+    Student {
+        name: string
+        email: string
+        ra: number
+    }
+    ExampleClass {
+        student: Student
+        grade: number
+        // grade, ;@# Student
+    }
+]
+endpoints [
+    Student {
+        GET '/students'
+        GET '/students/:ra'
+        POST '/students'
+        PUT '/students/:ra'
+        DELETE '/students/:ra'
+    }
+    ExampleClass {
+        GET 'class/:grade'
+    }
+]

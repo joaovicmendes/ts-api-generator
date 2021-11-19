@@ -1,0 +1,26 @@
+// Deve reportar identificador já declarado
+model [
+    Student {
+        name: string
+        email: string
+        ra: number
+        ra: string
+    }
+    ExampleClass {
+        student: Student
+        grade: number
+    }
+]
+endpoints [
+    Student {
+        GET '/students'
+        GET '/students/:ra'
+        GET '/students/:ra'
+        POST '/students'
+        PUT '/students/:ra'
+        DELETE '/students/:ra'
+    }
+    Student {
+        GET 'class/:grade'
+    }
+]

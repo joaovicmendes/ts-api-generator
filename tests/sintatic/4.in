@@ -1,0 +1,24 @@
+// Deve reportar erro método de rota inexistente
+model [
+    Student {
+        name: string
+        email: string
+        ra: number
+    }
+    ExampleClass {
+        student: Student
+        grade: number
+    }
+]
+endpoints [
+    Student {
+        GET '/students'
+        MYMETHOD '/students/:ra'
+        POST '/students'
+        PUT '/students/:ra'
+        DELETE '/students/:ra'
+    }
+    ExampleClass {
+        GET 'class/:grade'
+    }
+]

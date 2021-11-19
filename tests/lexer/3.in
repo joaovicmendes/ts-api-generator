@@ -1,8 +1,13 @@
+// Deve reportar símbolo não identificado
 model [
     Student {
         name: string
         email: string
         ra: number
+    }
+    ExampleClass {
+        student: Student,
+        grade: number
     }
 ]
 endpoints [
@@ -12,5 +17,8 @@ endpoints [
         POST '/students'
         PUT '/students/:ra'
         DELETE '/students/:ra'
+    }
+    ExampleClass {
+        GET 'class/:grade'
     }
 ]

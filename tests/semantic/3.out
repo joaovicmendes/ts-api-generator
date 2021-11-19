@@ -1,0 +1,4 @@
+Linha 7: identificador ra já declarado anteriormente
+Linha 18: rota GET '/students/:ra' declarado anteriormente
+Linha 23: identificador Student já declarado anteriormente
+Compilação interrompida.
