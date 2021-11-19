@@ -13,9 +13,9 @@ import org.antlr.v4.runtime.misc.ParseCancellationException;
 public class Main {
     public static void main(String[] args) {
         // Verificação do número de argumentos
-        if (args.length < 2) {
+        if (args.length < 1) {
             System.out.println("Erro: Número incorreto de parâmetros. Forma correta:");
-            System.out.println("    java -jar ts-api-gen.jar <input_file> <output_file>");
+            System.out.println("    java -jar ts-api-gen.jar <input_file>");
         }
 
         // Leitura de arquivo contendo código-fonte
@@ -32,9 +32,9 @@ public class Main {
         CommonTokenStream cts = new CommonTokenStream(scanner);
         tsgenParser parser = new tsgenParser(cts);
 
-        try (PrintWriter writer = new PrintWriter(args[1])) {
+        try (PrintWriter writer = new PrintWriter("index.ts")) {
             // Adicionado tratamento de erros customizado
-            ErrorListener customErrListener = new ErrorListener(writer);
+            ErrorListener customErrListener = new ErrorListener();
             parser.removeErrorListeners();
             parser.addErrorListener(customErrListener);
 
@@ -46,10 +46,11 @@ public class Main {
 
             if (!Utils.semanticErrors.isEmpty()) {
                 // Imprimindo erros
-                Utils.semanticErrors.forEach(writer::println);
-                writer.println("Compilação interrompida.");
+                Utils.semanticErrors.forEach(System.out::println);
+                System.out.println("Compilação interrompida.");
             } else {
-                writer.write("Compilado com sucesso.");
+                System.out.println("Compilado com sucesso.");
+                writer.println("gerado");
             }
         } catch (IOException exception) {
             System.out.println("Erro: Não foi possível abrir o arquivo '" + args[1] + "'");

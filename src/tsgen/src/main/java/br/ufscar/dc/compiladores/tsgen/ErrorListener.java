@@ -9,22 +9,17 @@ import java.io.PrintWriter;
 import java.util.BitSet;
 
 public class ErrorListener implements ANTLRErrorListener {
-    PrintWriter writer;
-
-    public ErrorListener(PrintWriter writer) {
-        this.writer = writer;
-    }
 
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
             int charPositionInLine, String msg, RecognitionException e) {
         Token tk = (Token) offendingSymbol;
         if (Utils.isError(tk.getType())) {
-            writer.println(Utils.stringifyError(tk));
+            System.out.println(Utils.stringifyError(tk));
         } else {
-            writer.println(Utils.stringifySyntaxError(line, tk));
+            System.out.println(Utils.stringifySyntaxError(line, tk));
         }
-        writer.println("Compilação interrompida.");
+        System.out.println("Compilação interrompida.");
         throw new ParseCancellationException();
     }
 
