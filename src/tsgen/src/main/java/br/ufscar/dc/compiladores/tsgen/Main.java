@@ -50,7 +50,9 @@ public class Main {
                 System.out.println("Compilação interrompida.");
             } else {
                 System.out.println("Compilado com sucesso.");
-                writer.println("gerado");
+                tsgenGenerator generator = new tsgenGenerator();
+                generator.visitProgram(tree);
+                writer.println(generator.outputCode.toString());
             }
         } catch (IOException exception) {
             System.out.println("Erro: Não foi possível abrir o arquivo '" + args[1] + "'");

@@ -41,9 +41,12 @@ public class tsgenSemantic extends tsgenBaseVisitor<Void> {
             }
 
             Type type = Utils.mapStringToType( field.type.getText() );
-            if (type == Type.Class && !models.containsKey(field.type.getText())) {
-                errorIdentifierNotDeclared(field.type.getText(), field.type);
+            if (type == Type.Class) {
+                errorIdentifierNotAllowedInScope(field.type.getText(), field.type);
             }
+            // if (type == Type.Class && !models.containsKey(field.type.getText())) {
+            //     errorIdentifierNotDeclared(field.type.getText(), field.type);
+            // }
 
             modelClass.add(type, fieldName);
         }
@@ -115,6 +118,10 @@ public class tsgenSemantic extends tsgenBaseVisitor<Void> {
 
     public void errorIdentifierNotDeclared(String id, Token tk) {
         Utils.addSemanticError(tk, String.format("identificador %s não declarado anteriormente", id));
+    }
+
+    public void errorIdentifierNotAllowedInScope(String id, Token tk) {
+        Utils.addSemanticError(tk, String.format("%s - aninhamento de classes do modelo não permitido", id));
     }
 
     public void errorRouteDeclared(String method, String uri, Token tk) {

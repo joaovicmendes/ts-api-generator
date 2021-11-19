@@ -127,4 +127,18 @@ public class Utils {
         }
         return null;
     }
+
+    /* Função que recebe um tipo e retorna seu mapeamento para o Sequelize */
+    public static String mapTypeToSequelize(Type type) {
+        switch (type) {
+            case String:
+                return "DataTypes.STRING";
+            case Number:
+                return "DataTypes.NUMBER";
+            case Boolean:
+                return "DataTypes.BOOLEAN";
+            default:
+                return "DataTypes.STRING";
+        }
+    }
 }
