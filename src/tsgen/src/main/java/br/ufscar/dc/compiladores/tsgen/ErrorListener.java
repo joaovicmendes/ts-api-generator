@@ -24,7 +24,7 @@ public class ErrorListener implements ANTLRErrorListener {
         } else {
             writer.println(Utils.stringifySyntaxError(line, tk));
         }
-        writer.println("End.");
+        writer.println("Compilação interrompida.");
         throw new ParseCancellationException();
     }
 
