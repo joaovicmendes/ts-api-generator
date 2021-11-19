@@ -1,4 +1,4 @@
-// Deve reportar erro de falta de [
+// Deve reportar aninhamento de tipos
 model [
     Student {
         name: string
@@ -6,11 +6,11 @@ model [
         ra: number
     }
     ExampleClass {
-        student_ra: number
+        student_ra: Student
         grade: number
     }
 ]
-endpoints 
+endpoints [
     Student {
         GET '/students'
         GET '/students/:ra'

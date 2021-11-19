@@ -6,7 +6,7 @@ model [
         ra: number
     }
     ExampleClass {
-        student: Student
+        studentRa: number
         grade: number
         // grade, ;@# Student
     }
@@ -20,6 +20,6 @@ endpoints [
         DELETE '/students/:ra'
     }
     ExampleClass {
-        GET 'class/:grade'
+        GET 'class/:studentRa'
     }
 ]
