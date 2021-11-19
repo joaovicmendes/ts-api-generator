@@ -27,7 +27,6 @@ models: 'model' '[' model+ ']';
 model: IDENT '{' fields+=field+ '}';
 field: IDENT ':' TYPE;
 
-
 endpoints: 'endpoints' '[' endpoint+ ']';
 endpoint: IDENT '{' routes+=route+ '}';
 route: method STRING;

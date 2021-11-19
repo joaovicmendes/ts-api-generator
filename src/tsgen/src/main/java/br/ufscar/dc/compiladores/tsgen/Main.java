@@ -43,7 +43,17 @@ public class Main {
 
             // Analise sintática
             tsgenParser.ProgramContext tree = parser.program();
-            writer.write("Compilado com sucesso.");
+            // Análise semântica
+            tsgenSemantic semantic = new tsgenSemantic();
+            semantic.visitProgram(tree);
+
+            if (!Utils.semanticErrors.isEmpty()) {
+                // Imprimindo erros
+                Utils.semanticErrors.forEach(writer::println);
+                writer.println("Compilação interrompida.");
+            } else {
+                writer.write("Compilado com sucesso.");
+            }
         } catch (IOException exception) {
             System.out.println("Erro: Não foi possível abrir o arquivo '" + args[1] + "'");
         } catch (ParseCancellationException ignored) {}

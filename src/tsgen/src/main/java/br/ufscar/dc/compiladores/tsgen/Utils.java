@@ -3,10 +3,15 @@ package br.ufscar.dc.compiladores.tsgen;
 import br.ufscar.dc.compiladores.parser.tsgenLexer;
 import org.antlr.v4.runtime.Token;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Utils {
+    /* Lista dos erros semânticos encontrados pelo tsgenSemantic */
+    public static List<String> semanticErrors = new ArrayList<>();
+
     /* Conjunto que representa os tokens de erro da linguagem. */
     private static final Map<Integer, String> errorTokens = new HashMap<>() {{
         put(tsgenLexer.UNCLOSED_STRING, "cadeia literal nao fechada");
@@ -69,5 +74,57 @@ public class Utils {
         }
 
         return tkString.toString();
+    }
+
+    /* Função que recebe o token onde um erro aconteceu e uma mensagem e adiciona a
+   lista de erros semânticos. */
+    public static void addSemanticError(Token tk, String msg) {
+        semanticErrors.add(String.format("Linha %d: %s", tk.getLine(), msg));
+    }
+
+    /* Função que recebe uma cadeia e mapeia para o Type adequado */
+    public static Type mapStringToType(String type) {
+        switch (type) {
+            case "string":
+                return Type.String;
+            case "number":
+                return Type.Number;
+            case "boolean":
+                return Type.Boolean;
+            default:
+                return Type.Class;
+        }
+    }
+
+    /* Função que recebe uma cadeia e mapeia para o Route.Method adequado */
+    public static Route.Method mapStringToMethod(String type) {
+        switch (type) {
+            case "GET":
+                return Route.Method.GET;
+            case "POST":
+                return Route.Method.POST;
+            case "PUT":
+                return Route.Method.PUT;
+            case "DELETE":
+                return Route.Method.DELETE;
+            default:
+                return Route.Method.Invalid;
+        }
+    }
+
+    /* Função que recebe uma cadeia e recorta o elemento contido entre ':' e '/'.
+    *  ex:
+    *  foo/:bar      -> bar
+    *  foo/:bar/test -> bar
+    *  foo/bar       -> null */
+    public static String extractRouteId(String uri) {
+        if (uri.contains(":")) {
+            String secondHalf = uri.split(":")[1];
+            if (!secondHalf.contains("/")) {
+                return secondHalf.substring(0, secondHalf.length()-1);
+            }
+            return secondHalf.split("/")[0];
+        }
+        return null;
     }
 }

@@ -6,6 +6,7 @@ public class Route {
         POST,
         PUT,
         DELETE,
+        Invalid,
     }
 
     Route(Method method, String uri) {

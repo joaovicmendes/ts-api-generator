@@ -27,4 +27,13 @@ public class ModelClass {
         }
         return false;
     }
+
+    Field getField(String id) {
+        for (var field : this.fields) {
+            if (field.id.equals(id)) {
+                return field;
+            }
+        }
+        return null;
+    }
 }
