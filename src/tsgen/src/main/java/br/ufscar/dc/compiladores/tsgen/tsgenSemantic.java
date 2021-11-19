@@ -35,14 +35,14 @@ public class tsgenSemantic extends tsgenBaseVisitor<Void> {
         ModelClass modelClass = new ModelClass();
 
         for (var field : ctx.fields) {
-            String fieldName = field.IDENT().getText();
+            String fieldName = field.ident.getText();
             if (modelClass.contains(fieldName)) {
-                errorIdentifierDeclared(fieldName, field.IDENT().getSymbol());
+                errorIdentifierDeclared(fieldName, field.ident);
             }
 
-            Type type = Utils.mapStringToType( field.TYPE().getText() );
-            if (type == Type.Class && !models.containsKey(field.TYPE().getText())) {
-                errorIdentifierNotDeclared(field.TYPE().getText(), field.TYPE().getSymbol());
+            Type type = Utils.mapStringToType( field.type.getText() );
+            if (type == Type.Class && !models.containsKey(field.type.getText())) {
+                errorIdentifierNotDeclared(field.type.getText(), field.type);
             }
 
             modelClass.add(type, fieldName);

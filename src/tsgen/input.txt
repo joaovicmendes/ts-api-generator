@@ -8,9 +8,9 @@ model [
 endpoints [
     Student {
         GET '/students'
-        GET '/students/:id'
-        POST '/students/:id'
-        PUT '/students/:id'
-        DELETE '/students/:id'
+        GET '/students/:ra'
+        POST '/students'
+        PUT '/students/:ra'
+        DELETE '/students/:ra'
     }
 ]

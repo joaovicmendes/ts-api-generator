@@ -1,6 +1,1 @@
-Linha 11: identificador id não declarado anteriormente
-Linha 12: método POST não deveria conter um identificador
-Linha 12: identificador id não declarado anteriormente
-Linha 13: identificador id não declarado anteriormente
-Linha 14: identificador id não declarado anteriormente
-Compilação interrompida.
+Compilado com sucesso.

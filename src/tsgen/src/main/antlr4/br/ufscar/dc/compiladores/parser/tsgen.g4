@@ -3,7 +3,7 @@ grammar tsgen;
 // Gramatica Analisador Léxico
 NUMBER: ('0'..'9')+ ('.' ('0'..'9')+)?;
 KEYWORD: 'model' | 'endpoints' | 'GET' | 'POST' | 'PUT' | 'DELETE';
-TYPE: 'string' | 'number' | 'bigint' | 'boolean' | 'any';
+TYPE: 'string' | 'number' | 'boolean';
 COLON: ':';
 OPN_SQR_BRACKET: '[';
 CLS_SQR_BRACKET: ']';
@@ -24,10 +24,10 @@ INVALID_CHAR: .+?;
 program: models endpoints EOF;
 
 models: 'model' '[' model+ ']';
-model: IDENT '{' fields+=field+ '}';
-field: IDENT ':' TYPE;
+model: IDENT '{' (fields+=field)+ '}';
+field: ident=IDENT ':' (type=TYPE | type=IDENT);
 
 endpoints: 'endpoints' '[' endpoint+ ']';
-endpoint: IDENT '{' routes+=route+ '}';
+endpoint: IDENT '{' (routes+=route)+ '}';
 route: method STRING;
 method: 'GET' | 'POST' | 'PUT' | 'DELETE';
