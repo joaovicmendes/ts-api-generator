@@ -9,9 +9,9 @@ const sequelize = new Sequelize('sqlite::memory:');
 // model
 class Student extends Model {};
 Student.init({
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    ra: DataTypes.NUMBER,
+        name: DataTypes.STRING,
+        email: DataTypes.STRING,
+        ra: DataTypes.NUMBER,
     }, {sequelize, modelName: 'Student'}
 );
 
@@ -24,7 +24,7 @@ initModel();
 // endpoints
 app.get('/students', async (req, res) => {
     const variable = await Student.findAll();
-    res.status(200).send(JSON.stringify(variable))
+    res.status(200).send(JSON.stringify(variable));
 });
 
 app.get('/students/:ra', async (req, res) => {
@@ -33,12 +33,12 @@ app.get('/students/:ra', async (req, res) => {
             ra: req.params.ra
         }
     });
-    res.status(200).send(JSON.stringify(variable))
+    res.status(200).send(JSON.stringify(variable));
 });
 
-app.post('/students/', async (req, res) => {
+app.post('/students', async (req, res) => {
     const variable = await Student.create(req.body);
-    res.status(201).send(JSON.stringify(variable))
+    res.status(200).send(JSON.stringify(variable));
 });
 
 app.put('/students/:ra', async (req, res) => {
@@ -53,13 +53,15 @@ app.put('/students/:ra', async (req, res) => {
 app.delete('/students/:ra', async (req, res) => {
     Student.destroy({
         where: {
-            id: req.params.ra
+            ra: req.params.ra
         }
     });
     res.status(200).send();
 });
+
 // endpoints-end
 
 app.listen(port, () => {
     console.log(`Server running at localhost:${port}`);
 });
+

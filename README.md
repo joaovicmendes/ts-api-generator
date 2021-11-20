@@ -12,26 +12,26 @@ O `ts-api-gen` é um projeto de geração de APIs REST. A partir de uma linguage
 ### Linguagem de Declaração
 Aqui uma descrição da linguagem de declaração da api, a `tsgen`:
 ```
-    model [
-        <model name> {
-            <column1>: <type>
-            <column2>: <type>
-            <column3>: <type>
-        }
-        ...
-    ]
-    endpoints [
-        <model name> {
-            <method> <endpoint>
-            <method> <endpoint>
-            <method> <endpoint>
-        }
-        ...
-    ]
+model [
+    <model name> {
+        <column1>: <type>
+        <column2>: <type>
+        <column3>: <type>
+    }
+    ...
+]
+endpoints [
+    <model name> {
+        <method> <endpoint>
+        <method> <endpoint>
+        <method> <endpoint>
+    }
+    ...
+]
 ```
 Os campos `model name` e `column` podem ser qualquer cadeira de caracteres iniciada com uma letra e seguida de letras, números ou _, desde que não tenham sido utilizadas anteriormente no mesmo contexto.
 
-O campo `type` pode ser um entre: `number`, `string`, `boolean`, ou um tipo do modelo (`model name`).
+O campo `type` pode ser um entre: `number`, `string`, e `boolean` (por hora).
 
 O campo `method` pode ser um entre: `GET`, `POST`, `PUT`, `DELETE`.
 
@@ -39,6 +39,7 @@ O campo `endpoint` pode ser uma cadeia de caracteres contendo a uri do recurso. 
 
 E aqui vai um exemplo simples:
 ```
+// Deve compilar com sucesso
 model [
     Student {
         name: string
@@ -49,10 +50,10 @@ model [
 endpoints [
     Student {
         GET '/students'
-        GET '/students/:id'
-        POST '/students/:id'
-        PUT '/students/:id'
-        DELETE '/students/:id'
+        GET '/students/:ra'
+        POST '/students'
+        PUT '/students/:ra'
+        DELETE '/students/:ra'
     }
 ]
 ```
@@ -61,9 +62,40 @@ endpoints [
 Um exemplo do código gerado ao informar a entrada acima esta contido [neste arquivo](https://github.com/joaovicmendes/ts-api-generator/blob/main/example.ts).
 
 ## Como executar
-Para executar o transpilador, é preciso ter instalado na máquina: 
+Para executar o transpilador e a API gerada, é preciso ter instalado na máquina: 
 - Java 11.0.11
 - Maven 3.8.2
+- Node v17.0.1
+- npm 8.1.0
 
-Para executar o código de api gerado, é preciso ter baixado o blob.zip e ter instalado:
-- npm <Versão>
+### A partir do binario
+1. Faça download do [binário]() e do [bundle.zip]()
+2. Na pasta onde se encontra o `tsgen-0.5.jar`, execute:
+```bash
+java -jar tsgen-0.5.jar <path pro arquivo de entrada>
+```
+3. Na mesma pasta, será gerado um `index.ts`. Depois de descompactar o bundle, copie o `index.ts` para sua raíz.
+4. De dentro do bundle, execute:
+```bash
+npm i
+npm start
+```
+
+### A partir do repositório
+1. A partir da raíz do repositório, execute o script:
+```bash
+sh scripts/build.sh
+```
+2. Depois que o projeto terminar sua compilação, execute o transpilador:
+```bash
+java -jar tsgen-0.5.jar <path pro arquivo de entrada>
+```
+3. Na mesma pasta será gerado um `index.ts`. Copie ele para a pasta do bundle executando:
+```bash
+cp index.ts bundle/index.ts
+```
+4. De dentro do bundle, execute:
+```bash
+npm i
+npm start
+```
