@@ -1,0 +1,39 @@
+model [
+    Course {
+        uid: number
+        title: string
+        description: string
+        instructorId: number
+        categoryId: number
+        rating: number
+        videoUrl: string
+        thumbnail: string
+        schedule: string
+    }
+    Instructor {
+        uid: number
+        name: string
+        email: string
+        phone: string
+    }
+    Category {
+        uid: number
+        name: string
+        color: string
+    }
+]
+endpoints [
+    Course {
+        GET '/courses'
+        GET '/courses/:uid'
+        POST '/courses'
+        PUT '/courses/:uid'
+        DELETE '/courses/:uid'
+    }
+    Category {
+        GET 'categories'
+    }
+    Instructor {
+        GET 'instructors/:uid'
+    }
+]

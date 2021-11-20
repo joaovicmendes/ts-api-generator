@@ -1,0 +1,25 @@
+model [
+    Prato {
+        nome: string
+        description: string
+    }
+    Ingrediente {
+        nome: string
+        quantidadeRestante: number
+    }
+    PratoUsa {
+        pratoNome: string
+        ingredienteNome: string
+        quantidade: number
+    }
+]
+endpoints [
+    Prato {
+        GET '/pratos'
+        POST '/pratos'
+        DELETE '/pratos/:nome'
+    }
+    Ingrediente {
+        POST 'ingredientes'
+    }
+]
