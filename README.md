@@ -29,7 +29,7 @@ endpoints [
     ...
 ]
 ```
-Os campos `model name` e `column` podem ser qualquer cadeira de caracteres iniciada com uma letra e seguida de letras, números ou _, desde que não tenham sido utilizadas anteriormente no mesmo contexto.
+Os campos `model name` e `column` podem ser qualquer cadeira de caracteres iniciada com uma letra e seguida de letras, números ou _, desde que não tenham sido utilizadas anteriormente no mesmo contexto. Toda classe do modelo tem, por padrão, um campo `id`, `updatedAt` e `createdAt`.
 
 O campo `type` pode ser um entre: `number`, `string`, e `boolean` (por hora).
 
