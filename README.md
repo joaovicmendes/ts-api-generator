@@ -69,10 +69,10 @@ Para executar o transpilador e a API gerada, é preciso ter instalado na máquin
 - npm 8.1.0
 
 ### A partir do binario
-1. Faça download do [binário](https://github.com/joaovicmendes/ts-api-generator/releases/download/latest/tsgen-0.5.jar) e do [bundle.zip](https://github.com/joaovicmendes/ts-api-generator/releases/download/latest/bundle-v0.5.zip)
-2. Na pasta onde se encontra o `tsgen-0.5.jar`, execute:
+1. Faça download do [binário](https://github.com/joaovicmendes/ts-api-generator/releases/download/latest/tsgen-0.6.jar) e do [bundle.zip](https://github.com/joaovicmendes/ts-api-generator/releases/download/latest/bundle-v0.5.zip)
+2. Na pasta onde se encontra o `tsgen-0.6.jar`, execute:
 ```bash
-java -jar tsgen-0.5.jar <path pro arquivo de entrada>
+java -jar tsgen-0.6.jar <path pro arquivo de entrada>
 ```
 3. Na mesma pasta, será gerado um `index.ts`. Depois de descompactar o bundle, copie o `index.ts` para sua raíz.
 4. De dentro do bundle, execute:
@@ -88,7 +88,7 @@ sh scripts/build.sh
 ```
 2. Depois que o projeto terminar sua compilação, execute o transpilador:
 ```bash
-java -jar tsgen-0.5.jar <path pro arquivo de entrada>
+java -jar tsgen-0.6.jar <path pro arquivo de entrada>
 ```
 3. Na mesma pasta será gerado um `index.ts`. Copie ele para a pasta do bundle executando:
 ```bash

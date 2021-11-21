@@ -40,6 +40,10 @@ public class tsgenSemantic extends tsgenBaseVisitor<Void> {
                 errorIdentifierDeclared(fieldName, field.ident);
             }
 
+            if (fieldName.equals("id") || fieldName.equals("createdAt") || fieldName.equals("updatedAt")) {
+                errorNameNotAllowed(fieldName, field.ident);
+            }
+
             Type type = Utils.mapStringToType( field.type.getText() );
             if (type == Type.Class) {
                 errorIdentifierNotAllowedInScope(field.type.getText(), field.type);
@@ -138,5 +142,9 @@ public class tsgenSemantic extends tsgenBaseVisitor<Void> {
 
     public void errorShouldNotContainRouteId(String method, Token tk) {
         Utils.addSemanticError(tk, String.format("método %s não deveria conter um identificador", method));
+    }
+
+    public void errorNameNotAllowed(String id, Token tk) {
+        Utils.addSemanticError(tk, String.format("nome de identificador %s não permitido", id));
     }
 }
